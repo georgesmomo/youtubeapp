@@ -8,5 +8,5 @@
 
     - name: Lancer les nouveaux conteneurs
       shell: |
-        docker run -d --name youtube-backend -p 8080:8080 georgesmomo/youtube-backend
-        docker run -d --name youtube-frontend -p 80:80 georgesmomo/youtube-frontend
+        docker run -d --name youtube-backend -p 8085:8085 georgesmomo/youtube-backend
+        docker run -d --name youtube-frontend -p 85:85 georgesmomo/youtube-frontend
