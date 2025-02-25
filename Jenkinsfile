@@ -12,7 +12,18 @@ pipeline {
                 sh 'git clone https://github.com/georgesmomo/youtubeapp.git'  // Clonage du code
             }
         }
+        stage('Build & Test Backend') {
+            steps {
+                dir('./youtubeapp') {
+                    // Nous restons dans le répertoire './youtubeapp' pendant toute la durée de ce bloc
+                    sh 'pwd'  // Cela va afficher le chemin absolu du répertoire dans lequel tu es
+                    sh 'mvn clean package -DskipTests'  // Ignore les tests et fait le package
+                    sh 'ls -la target'  // Vérifie si le dossier target a bien été créé et si le fichier JAR est présent
+                }
+            }
+        }
 
+        
         stage('Créer Image Docker Backend') {
             steps {
                 dir('youtubeapp') {  // Nous changeons de répertoire pour travailler dans youtubeapp
