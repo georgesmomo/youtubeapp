@@ -15,11 +15,12 @@ pipeline {
 
         stage('Build & Test Backend') {
             steps {
-                sh 'pwd'
-                sh 'cd ./youtubeapp'
-                sh 'mvn clean package'
-                sh 'mvn test'
-            }
+                dir('./youtubeapp') {
+                    // Nous restons dans le répertoire './youtubeapp' pendant toute la durée de ce bloc
+                    sh 'pwd'  // Cela va afficher le chemin absolu du répertoire dans lequel tu es
+                    sh 'mvn clean package'
+                    sh 'mvn test'
+                }
         }
 
         stage('Créer Image Docker Backend') {
