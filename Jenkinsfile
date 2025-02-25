@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Cloner le code') {
             steps {
+                sh 'pwd'
                 sh 'git clone https://github.com/georgesmomo/youtubeapp.git'
             }
         }
