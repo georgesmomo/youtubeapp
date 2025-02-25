@@ -16,6 +16,7 @@ pipeline {
         stage('Build & Test Backend') {
             steps {
                 sh 'pwd'
+                sh 'cd ./youtubeapp'
                 sh 'mvn clean package'
                 sh 'mvn test'
             }
