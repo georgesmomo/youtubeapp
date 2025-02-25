@@ -21,6 +21,7 @@ pipeline {
                     sh 'mvn clean package'
                     sh 'mvn test'
                 }
+            }
         }
 
         stage('Créer Image Docker Backend') {
