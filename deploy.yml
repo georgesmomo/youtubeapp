@@ -1,0 +1,12 @@
+- hosts: docker_servers
+  tasks:
+    - name: Arrêter les anciens conteneurs
+      shell: docker stop youtube-backend youtube-frontend || true
+
+    - name: Supprimer les anciens conteneurs
+      shell: docker rm youtube-backend youtube-frontend || true
+
+    - name: Lancer les nouveaux conteneurs
+      shell: |
+        docker run -d --name youtube-backend -p 8080:8080 georgesmomo/youtube-backend
+        docker run -d --name youtube-frontend -p 80:80 georgesmomo/youtube-frontend
