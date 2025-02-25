@@ -45,6 +45,7 @@ pipeline {
         stage('Déploiement Backend') {
             steps {
                 dir('youtubeapp') { 
+                    sh 'whoami'
                     sh 'ansible-playbook -i inventory deploy.yml'  // Déploiement avec Ansible
                 }
             }
