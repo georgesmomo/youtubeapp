@@ -44,7 +44,9 @@ pipeline {
 
         stage('Déploiement Backend') {
             steps {
-                sh 'ansible-playbook -i inventory deploy.yml'  // Déploiement avec Ansible
+                dir('youtubeapp') { 
+                    sh 'ansible-playbook -i inventory deploy.yml'  // Déploiement avec Ansible
+                }
             }
         }
     }
