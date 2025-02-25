@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Cloner le code') {
             steps {
-                git 'https://github.com/georgesmomo/youtubeapp.git'
+                sh 'git clone https://github.com/georgesmomo/youtubeapp.git'
             }
         }
 
