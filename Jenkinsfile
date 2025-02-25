@@ -8,13 +8,14 @@ pipeline {
     stages {
         stage('Cloner le code') {
             steps {
-                sh 'pwd'
+                sh 'rm -rf ./*'
                 sh 'git clone https://github.com/georgesmomo/youtubeapp.git'
             }
         }
 
         stage('Build & Test Backend') {
             steps {
+                sh 'pwd'
                 sh 'mvn clean package'
                 sh 'mvn test'
             }
