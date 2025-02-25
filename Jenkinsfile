@@ -5,11 +5,6 @@ pipeline {
         DOCKER_IMAGE = "georgesmomo/youtube-backend"
     }
 
-    options {
-        // Définir un répertoire de travail global pour le pipeline
-        workdir 'youtubeapp'  // Ce répertoire sera utilisé par toutes les étapes
-    }
-
     stages {
         stage('Cloner le code') {
             steps {
@@ -20,14 +15,18 @@ pipeline {
 
         stage('Créer Image Docker Backend') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'  // Création de l'image Docker dans le répertoire youtubeapp
+                dir('youtubeapp') {  // Nous changeons de répertoire pour travailler dans youtubeapp
+                    sh 'docker build -t $DOCKER_IMAGE .'  // Création de l'image Docker dans le bon répertoire
+                }
             }
         }
 
         stage('Pousser Image Docker Backend') {
             steps {
                 withDockerRegistry([credentialsId: 'dockerhub_credentials', url: '']) {
-                    sh 'docker push $DOCKER_IMAGE'  // Poussée de l'image Docker vers Docker Hub
+                    dir('youtubeapp') {  // Nous restons dans le répertoire youtubeapp pour pousser l'image
+                        sh 'docker push $DOCKER_IMAGE'  // Poussée de l'image Docker vers Docker Hub
+                    }
                 }
             }
         }
