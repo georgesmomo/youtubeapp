@@ -19,7 +19,7 @@ pipeline {
                     // Nous restons dans le répertoire './youtubeapp' pendant toute la durée de ce bloc
                     sh 'pwd'  // Cela va afficher le chemin absolu du répertoire dans lequel tu es
                     sh 'mvn clean package'
-                    sh 'mvn test'
+                    //sh 'mvn test'
                 }
             }
         }
